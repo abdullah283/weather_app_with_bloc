@@ -2,17 +2,17 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-part 'tema_event.dart';
-part 'tema_state.dart';
+part 'theme_event.dart';
+part 'theme_state.dart';
 
-class TemaBloc extends Bloc<TemaEvent, TemaState> {
-  TemaBloc()
+class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
+  ThemeBloc()
       : super(CreateThemeData(
             themeData: ThemeData(primarySwatch: Colors.blue),
             color: Colors.amber)) {
-    on<TemaEvent>((event, emit) {
+    on<ThemeEvent>((event, emit) {
       CreateThemeData? _createThemeData;
-      if (event is ChangeThema) {
+      if (event is ChangeTheme) {
         switch (event.themeState) {
           case "sn": //snow
           case "sl": //sleet

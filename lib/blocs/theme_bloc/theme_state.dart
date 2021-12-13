@@ -1,10 +1,10 @@
-part of 'tema_bloc.dart';
+part of 'theme_bloc.dart';
 
-abstract class TemaState extends Equatable {
-  const TemaState();
+abstract class ThemeState extends Equatable {
+  const ThemeState();
 }
 
-class CreateThemeData extends TemaState {
+class CreateThemeData extends ThemeState {
   @override
   List<Object> get props => [themeData, color];
   final ThemeData themeData;

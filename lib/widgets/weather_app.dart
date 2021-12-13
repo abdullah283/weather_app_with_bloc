@@ -2,7 +2,7 @@
 
 import 'dart:async';
 import 'package:bolum_33_weather_app/blocs/bloc/weather_bloc.dart';
-import 'package:bolum_33_weather_app/blocs/teme_bloc/tema_bloc.dart';
+import 'package:bolum_33_weather_app/blocs/theme_bloc/theme_bloc.dart';
 import 'package:bolum_33_weather_app/widgets/gradient_backgroundcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,7 +54,7 @@ class WeatherApp extends StatelessWidget {
               }
               if (state is WeatherLoaded) {
                 pickedCity = state.weather.title;
-                context.read<TemaBloc>().add(ChangeThema(
+                context.read<ThemeBloc>().add(ChangeTheme(
                     themeState:
                         state.weather.consolidatedWeather[0].weatherStateAbbr));
                 _completer.complete();
@@ -67,7 +67,7 @@ class WeatherApp extends StatelessWidget {
                     return _completer.future;
                   },
                   child: BlocBuilder(
-                    bloc: BlocProvider.of<TemaBloc>(context),
+                    bloc: BlocProvider.of<ThemeBloc>(context),
                     builder: (context, temaState) {
                       return GradientBackgroundcolor(
                         color: (temaState as CreateThemeData).color,

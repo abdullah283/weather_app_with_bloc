@@ -1,16 +1,7 @@
-# bolum_33_weather_app
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+bu uygulamada bloc provider ile katmanlı mimari kullanıldı.
+api kaynağı ile internetten hava durumu verileri  getiriliyor.
+getirilen veriler bloc yapısinda istenilen event durumuna göre işleniyor.
+işlendikten sonra bloc yapısından state olarak çıkıyor.
+çıkan state deki veriler widget yardımıyla UI da gösteriliyor.
+uygulamada yeni bir şehir girildiğinde hava durumuna göre bloc buildir yapısı ile güncelleniyor.
+aynı zamanda ekranımız aşığıya doğru çekildiğinde refresh komutu çalışıyor ve güncelleme sorunsuz yapılıyor.

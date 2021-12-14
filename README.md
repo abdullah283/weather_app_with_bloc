@@ -1,5 +1,5 @@
 bu uygulamada bloc provider ile katmanlı mimari kullanıldı.
-api kaynağı ile internetten hava durumu verileri  getiriliyor.
+api kaynağı ile internetten hava durumu verileri dio kütüphanesi kullanılarak getiriliyor.
 getirilen veriler bloc yapısinda istenilen event durumuna göre işleniyor.
 işlendikten sonra bloc yapısından state olarak çıkıyor.
 çıkan state deki veriler widget yardımıyla UI da gösteriliyor.

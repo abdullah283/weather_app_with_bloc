@@ -8,6 +8,7 @@ class GradientBackgroundcolor extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
+    debugPrint(color.toString());
     return Container(
       child: child,
       decoration: BoxDecoration(

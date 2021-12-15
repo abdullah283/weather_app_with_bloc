@@ -9,7 +9,8 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc()
       : super(CreateThemeData(
             themeData: ThemeData(primarySwatch: Colors.blue),
-            color: Colors.amber)) {
+            color: Colors.pink,
+            abr: 'sn')) {
     on<ThemeEvent>((event, emit) {
       CreateThemeData? _createThemeData;
       if (event is ChangeTheme) {
@@ -21,7 +22,8 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
           case "hc": //heavy cloud
             _createThemeData = CreateThemeData(
                 themeData: ThemeData(primarySwatch: Colors.blueGrey),
-                color: Colors.grey);
+                color: Colors.grey,
+                abr: event.themeState);
             break;
 
           case "hr": //heavy rain
@@ -29,14 +31,16 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
           case "s": // showers
             _createThemeData = CreateThemeData(
                 themeData: ThemeData(primarySwatch: Colors.indigo),
-                color: Colors.indigo);
+                color: Colors.indigo,
+                abr: event.themeState);
             break;
 
           case "lc": //alight cloud
           case "c": //clear
             _createThemeData = CreateThemeData(
                 themeData: ThemeData(primarySwatch: Colors.orange),
-                color: Colors.yellow);
+                color: Colors.yellow,
+                abr: event.themeState);
             break;
         }
         emit(_createThemeData!);

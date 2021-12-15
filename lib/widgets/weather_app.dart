@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:bolum_33_weather_app/blocs/bloc/weather_bloc.dart';
 import 'package:bolum_33_weather_app/blocs/theme_bloc/theme_bloc.dart';
+import 'package:bolum_33_weather_app/widgets/animation_backgroundcolor.dart';
 import 'package:bolum_33_weather_app/widgets/gradient_backgroundcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,6 +16,7 @@ import 'location.dart';
 class WeatherApp extends StatelessWidget {
   WeatherApp({Key? key}) : super(key: key);
   String? pickedCity = 'Ankara';
+  String? weatherStateAbbr;
   Completer<void> _completer = Completer<void>();
   @override
   Widget build(BuildContext context) {
@@ -57,8 +59,11 @@ class WeatherApp extends StatelessWidget {
                 context.read<ThemeBloc>().add(ChangeTheme(
                     themeState:
                         state.weather.consolidatedWeather[0].weatherStateAbbr));
+                weatherStateAbbr =
+                    state.weather.consolidatedWeather[0].weatherStateAbbr;
                 _completer.complete();
                 _completer = Completer();
+
                 return RefreshIndicator(
                   onRefresh: () {
                     context
@@ -69,38 +74,43 @@ class WeatherApp extends StatelessWidget {
                   child: BlocBuilder(
                     bloc: BlocProvider.of<ThemeBloc>(context),
                     builder: (context, temaState) {
-                      return GradientBackgroundcolor(
-                        color: (temaState as CreateThemeData).color,
-                        child: Center(
-                          child: ListView(
-                            // ignore: prefer_const_literals_to_create_immutables
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Center(child: LocationWidget()),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: LastUpdateWidget(),
+                      if ((temaState as CreateThemeData).color != Colors.pink &&
+                          weatherStateAbbr == temaState.abr) {
+                        return AnimationBackgroundColor(
+                          color: (temaState as CreateThemeData).color,
+                          childd: Center(
+                            child: ListView(
+                              // ignore: prefer_const_literals_to_create_immutables
+                              children: [
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Center(child: LocationWidget()),
                                 ),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: WeatherStateImageWidget(),
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Center(
+                                    child: LastUpdateWidget(),
+                                  ),
                                 ),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Center(
-                                  child: MaxAndMinTemplateWidget(),
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Center(
+                                    child: WeatherStateImageWidget(),
+                                  ),
                                 ),
-                              )
-                            ],
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Center(
+                                    child: MaxAndMinTemplateWidget(),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      } else {
+                        return CircularProgressIndicator();
+                      }
                     },
                   ),
                 );
